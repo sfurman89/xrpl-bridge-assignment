@@ -10,7 +10,8 @@ $ cd xrpl-bridge-assignment
 ## Running the app
 
 ```bash
-$ docker-compose up or docker-compose up -d
+$ npm i
+$ docker-compose up
 ```
 
 ## Test
