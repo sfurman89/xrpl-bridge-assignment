@@ -10,7 +10,7 @@ $ cd xrpl-bridge-assignment
 ## Running the app
 
 ```bash
-$ docker-compouse up or docker-compose up -d
+$ docker-compose up or docker-compose up -d
 ```
 
 ## Test
