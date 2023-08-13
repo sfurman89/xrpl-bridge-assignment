@@ -1,0 +1,33 @@
+version: "3.7"
+services:
+  app:
+    build:
+      context: .
+    image: xrpl-bridge-assignment/nodejs-app
+    container_name: xrpl-bridge-assignment
+    env_file:
+      - .env
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - "0.0.0.0:3000:3000"
+    depends_on:
+      - redis
+      - mongodb
+#    restart: always
+    command: npm run start:dev
+  redis:
+    image: redis:alpine
+    volumes:
+      - ./redis:/data
+    ports:
+      - "6379:6379"
+#    restart: always
+    entrypoint: redis-server --appendonly yes
+  mongodb:
+    image: mongo:latest
+    volumes:
+      - ./mongodb:/data/db
+    ports:
+      - "27017:27017"
+#    restart: always

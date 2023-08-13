@@ -1,0 +1,484 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+interface IResponseWarning {
+  id: Int!
+  message: String!
+  details: IDynamicParam
+}
+
+interface IDynamicParam {
+  value: String!
+}
+
+type IMemoParamsType {
+  MemoData: String
+  MemoType: String
+  MemoFormat: String
+}
+
+type IMemoType {
+  Memo: IMemoParamsType!
+}
+
+type ISignerParamsType {
+  Account: String!
+  TxnSignature: String!
+  SigningPubKey: String!
+}
+
+type ISignerType {
+  Signer: ISignerParamsType!
+}
+
+type ITransactionMetadata {
+  delivered_amount: String
+  TransactionIndex: Int!
+  TransactionResult: String!
+}
+
+type IAccountData {
+  Account: String!
+  Balance: String!
+  Flags: Int
+  LedgerEntryType: String
+  OwnerCount: Int
+  PreviousTxnID: String
+  PreviousTxnLgrSeq: Int
+  Sequence: Int
+  index: String
+}
+
+type IAccountFlags {
+  defaultRipple: Boolean
+  depositAuth: Boolean
+  disableMasterKey: Boolean
+  disallowIncomingCheck: Boolean
+  disallowIncomingNFTokenOffer: Boolean
+  disallowIncomingPayChan: Boolean
+  disallowIncomingTrustline: Boolean
+  disallowIncomingXRP: Boolean
+  globalFreeze: Boolean
+  noFreeze: Boolean
+  passwordSpent: Boolean
+  requireAuthorization: Boolean
+  requireDestinationTag: Boolean
+}
+
+type IResultPayment {
+  hash: String!
+  ledger_index: Int
+  meta: ITransactionMetadata
+  validated: Boolean
+  date: Int
+  Account: String!
+  TransactionType: String!
+  Fee: String
+  Sequence: Int
+  AccountTxnID: String
+  Flags: Int
+  LastLedgerSequence: Int
+  Memos: [IMemoType!]
+  Signers: [ISignerType!]
+  SourceTag: Int
+  SigningPubKey: String
+  TicketSequence: Int
+  TxnSignature: String
+  NetworkID: Int
+  Amount: String
+  Destination: String
+  DestinationTag: Float
+  InvoiceID: String
+  SendMax: String
+  DeliverMin: String
+}
+
+type IResultPaymentTx {
+  hash: String!
+  ledger_index: Int
+  meta: ITransactionMetadata
+  validated: Boolean
+  date: Int
+  Account: String!
+  TransactionType: String!
+  Fee: String
+  Sequence: Int
+  AccountTxnID: String
+  Flags: Int
+  LastLedgerSequence: Int
+  Memos: [IMemoType!]
+  Signers: [ISignerType!]
+  SourceTag: Int
+  SigningPubKey: String
+  TicketSequence: Int
+  TxnSignature: String
+  NetworkID: Int
+  Amount: String
+  Destination: String
+  DestinationTag: Float
+  InvoiceID: String
+  SendMax: String
+  DeliverMin: String
+  inLedger: Int
+}
+
+type IResultAccountInfo {
+  account_data: IAccountData!
+  account_flags: IAccountFlags!
+  ledger_current_index: Int!
+  validated: Boolean
+}
+
+type IResultAccountCurrencies {
+  ledger_current_index: Int!
+  receive_currencies: [String!]!
+  send_currencies: [String!]!
+  validated: Boolean
+}
+
+type IResultAccountTxTransaction {
+  meta: ITransactionMetadata
+  tx: IResultPayment
+  validated: Boolean
+}
+
+type IResultAccountTransactions {
+  account: String!
+  ledger_index_max: Int!
+  ledger_index_min: Int!
+  limit: Int!
+  transactions: [IResultAccountTxTransaction!]!
+  validated: Boolean
+}
+
+type IResultAccountSet {
+  hash: String!
+  ledger_index: Int
+  meta: ITransactionMetadata
+  validated: Boolean
+  date: Int
+  Account: String!
+  TransactionType: String!
+  Fee: String
+  Sequence: Int
+  AccountTxnID: String
+  Flags: Int
+  LastLedgerSequence: Int
+  Memos: [IMemoType!]
+  Signers: [ISignerType!]
+  SourceTag: Int
+  SigningPubKey: String
+  TicketSequence: Int
+  TxnSignature: String
+  NetworkID: Int
+  ClearFlag: Int
+  Domain: String
+  EmailHash: String
+  MessageKey: String
+  SetFlag: AccountSetAsfFlags
+  TransferRate: Int
+  TicketSize: Int
+  NFTokenMinter: String
+  inLedger: Int
+}
+
+enum AccountSetAsfFlags {
+  asfRequireDest
+  asfRequireAuth
+  asfDisallowXRP
+  asfDisableMaster
+  asfAccountTxnID
+  asfNoFreeze
+  asfGlobalFreeze
+  asfDefaultRipple
+  asfDepositAuth
+  asfAuthorizedNFTokenMinter
+  asfDisallowIncomingNFTokenOffer
+  asfDisallowIncomingCheck
+  asfDisallowIncomingPayChan
+  asfDisallowIncomingTrustline
+  asfAllowTrustLineClawback
+}
+
+type IResultAccountDelete {
+  hash: String!
+  ledger_index: Int
+  meta: ITransactionMetadata
+  validated: Boolean
+  date: Int
+  Account: String!
+  TransactionType: String!
+  Fee: String
+  Sequence: Int
+  AccountTxnID: String
+  Flags: Int
+  LastLedgerSequence: Int
+  Memos: [IMemoType!]
+  Signers: [ISignerType!]
+  SourceTag: Int
+  SigningPubKey: String
+  TicketSequence: Int
+  TxnSignature: String
+  NetworkID: Int
+  Destination: String!
+  DestinationTag: Int
+  inLedger: Int
+}
+
+type TransactionParams {
+  account: String!
+  destination: String!
+  amount: String
+  currency: String
+  hash: String!
+  message: String
+}
+
+type Transaction {
+  id: Int
+  type: String
+  status: String
+  warning: String
+  warnings: [IResponseWarning!]!
+  forwarded: Boolean
+  api_version: Int
+  result: IResultPaymentTx
+}
+
+type SendXrp {
+  id: Int
+  type: String
+  status: String
+  warning: String
+  warnings: [IResponseWarning!]!
+  forwarded: Boolean
+  api_version: Int
+  result: IResultPayment!
+  searched_all: Boolean
+}
+
+type MonitorTransactions {
+  transaction: TransactionParams
+  error: String
+}
+
+type Wallet {
+  publicKey: String!
+  privateKey: String!
+  classicAddress: String!
+  seed: String
+}
+
+type Balance {
+  value: String!
+  currency: String!
+  issuer: String
+}
+
+type AccountInfo {
+  id: Int
+  type: String
+  status: String
+  warning: String
+  warnings: [IResponseWarning!]!
+  forwarded: Boolean
+  api_version: Int
+  result: IResultAccountInfo!
+}
+
+type AccountCurrencies {
+  id: Int
+  type: String
+  status: String
+  warning: String
+  warnings: [IResponseWarning!]!
+  forwarded: Boolean
+  api_version: Int
+  result: IResultAccountCurrencies!
+}
+
+type AccountTransactions {
+  id: Int
+  type: String
+  status: String
+  warning: String
+  warnings: [IResponseWarning!]!
+  forwarded: Boolean
+  api_version: Int
+  result: IResultAccountTransactions!
+}
+
+type CreateAccount {
+  wallet: Wallet!
+  balance: Int!
+}
+
+type UpdateAccount {
+  id: Int
+  type: String
+  status: String
+  warning: String
+  warnings: [IResponseWarning!]!
+  forwarded: Boolean
+  api_version: Int
+  result: IResultAccountSet
+}
+
+type DeleteAccount {
+  id: Int
+  type: String
+  status: String
+  warning: String
+  warnings: [IResponseWarning!]!
+  forwarded: Boolean
+  api_version: Int
+  result: IResultAccountDelete
+}
+
+type Query {
+  getWallet(seed: String!, opts: WalletOptsInput): Wallet!
+  getXrpBalance(account: String!, opts: XrpBalanceOptsInput): String!
+  getBalances(account: String!, opts: BalanceOptsInput): [Balance!]!
+  getAccountInfo(input: AccountInfoInput!): AccountInfo!
+  getAccountCurrencies(input: AccountCurrenciesInput!): AccountCurrencies!
+  getAccountTransactions(input: AccountTransactionsInput!): AccountTransactions!
+  getTransaction(hash: String!): Transaction!
+}
+
+input WalletOptsInput {
+  masterAddress: String
+  algorithm: ECDSA
+}
+
+enum ECDSA {
+  ed25519
+  secp256k1
+}
+
+input XrpBalanceOptsInput {
+  ledger_hash: String
+  ledger_index: LedgerIndexType
+}
+
+enum LedgerIndexType {
+  validated
+  closed
+  current
+}
+
+input BalanceOptsInput {
+  ledger_hash: String
+  ledger_index: LedgerIndexType
+  peer: String
+  limit: Int
+}
+
+input AccountInfoInput {
+  account: String!
+  api_version: Int
+  id: Int
+  ledger_hash: String
+  ledger_index: LedgerIndexType
+  queue: Boolean
+  signer_lists: Boolean
+  strict: Boolean
+}
+
+input AccountCurrenciesInput {
+  account: String!
+  api_version: Int
+  id: Int
+  ledger_hash: String
+  ledger_index: LedgerIndexType
+  strict: Boolean
+}
+
+input AccountTransactionsInput {
+  account: String!
+  api_version: Int
+  binary: Boolean
+  forward: Boolean
+  id: Int
+  ledger_hash: String
+  ledger_index: LedgerIndexType
+  ledger_index_max: Int
+  ledger_index_min: Int
+  limit: Int
+}
+
+type Mutation {
+  createAccount: CreateAccount!
+  updateAccount(input: UpdateAccountInput!): UpdateAccount!
+  deleteAccount(input: DeleteAccountInput!): DeleteAccount!
+  sendXrp(input: SendXrpInput!): SendXrp!
+}
+
+"""
+Modifies the properties of an account in the XRP Ledger.
+"""
+input UpdateAccountInput {
+  seed: String!
+  AccountTxnID: String
+  ClearFlag: Int
+  Domain: String
+  EmailHash: String
+  Fee: String
+  Flags: Int
+  LastLedgerSequence: Int
+  Memos: [IMemoInput!]
+  MessageKey: String
+  NFTokenMinter: String
+  NetworkID: Int
+  Sequence: Int
+  SetFlag: AccountSetAsfFlags
+  Signers: [ISignerInput!]
+  SigningPubKey: String
+  SourceTag: Int
+  TicketSize: Int
+  TicketSequence: Int
+  TransferRate: Int
+  TxnSignature: String
+}
+
+input IMemoInput {
+  Memo: IMemoParamsInput!
+}
+
+input IMemoParamsInput {
+  MemoData: String
+  MemoType: String
+  MemoFormat: String
+}
+
+input ISignerInput {
+  Signer: ISignerParamsInput!
+}
+
+input ISignerParamsInput {
+  Account: String!
+  TxnSignature: String!
+  SigningPubKey: String!
+}
+
+"""
+Deletes an account and any objects it owns in the XRP Ledger.
+"""
+input DeleteAccountInput {
+  seed: String!
+  destination: String!
+}
+
+input SendXrpInput {
+  seed: String!
+  destination: String!
+  amount: Float
+}
+
+type Subscription {
+  monitorTransactions(input: MonitorTransactionsInput!): MonitorTransactions!
+}
+
+input MonitorTransactionsInput {
+  wallets: [String!]!
+}
