@@ -3,7 +3,7 @@
 ## Getting Project
 
 ```bash
-$ git clone https://github.com/2kabhishek/projects
+$ git clone https://github.com/sfurman89/xrpl-bridge-assignment.git
 $ cd xrpl-bridge-assignment
 ```
 
